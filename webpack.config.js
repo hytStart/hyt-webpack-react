@@ -1,11 +1,14 @@
 const path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.[hash].js',
+        // filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
     module: {
@@ -34,9 +37,31 @@ module.exports = {
                     'file-loader',
                 ],
             },
+            {
+                test: /\.(csv|tsv)$/,
+                use: [
+                    'csv-loader',
+                ]
+            },
+            {
+                test: /\.xml$/,
+                use: [
+                    'xml-loader',
+                ]
+            }
         ],
     },
     plugins: [
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'Output Management',
+        }),
         new ExtractTextPlugin("styles.css"),
-    ]
+    ],
+    devtool: 'eval-source-map',
+    devServer: {
+        contentBase: './src/',
+        port: 9000,
+        hot: true, // 启动热更新
+    },
 }
