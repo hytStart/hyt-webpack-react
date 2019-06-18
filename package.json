@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --open"
+    "dev": "webpack-dev-server --env=dev",
+    "prod": "webpack --env=prod"
   },
   "author": "",
   "license": "ISC",

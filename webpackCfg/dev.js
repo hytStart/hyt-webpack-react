@@ -1,13 +1,17 @@
 const path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
-const publicPath = "/assets/"
+const defaultModule = require('./default.js')
+const {
+    port,
+    publicPath,
+} = defaultModule
 
 module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, '../dist/assets/'),
         publicPath,
     },
     module: {
@@ -57,7 +61,7 @@ module.exports = {
     devServer: {
         contentBase: './src/',
         publicPath,
-        port: 9000,
+        port,
         hot: true, // 启动热更新
         https: true, // 默认情况下，dev-server 通过 HTTP 提供服务。也可以选择带有 HTTPS 的 HTTP/2 提供服务
         open: true,

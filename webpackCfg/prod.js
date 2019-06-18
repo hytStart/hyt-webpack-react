@@ -3,12 +3,17 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+const defaultModule = require('./default.js')
+const {
+    publicPath,
+} = defaultModule
 
 module.exports = {
     entry: './src/index.js',
     output: {
         filename: '[name].bundle.[hash].js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, '../dist/assets/'), // 打包的路径
+        publicPath, // index.html中的引入路径
     },
     module: {
         rules: [
@@ -53,9 +58,10 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Output Management',
+            title: 'hyt',
+            filename: '../index.html',
         }),
         new ExtractTextPlugin("styles.css"),
     ],
-    devtool: 'eval-source-map',
+    devtool: 'cheap-module-source-map',
 }
