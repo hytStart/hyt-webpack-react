@@ -1,14 +1,11 @@
 const path = require('path')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 const publicPath = "/assets/"
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        // filename: '[name].bundle.[hash].js',
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
         publicPath,
@@ -54,10 +51,6 @@ module.exports = {
         ],
     },
     plugins: [
-        // new CleanWebpackPlugin(),
-        // new HtmlWebpackPlugin({
-        //     title: 'Output Management',
-        // }),
         new ExtractTextPlugin("styles.css"),
     ],
     devtool: 'eval-source-map',
