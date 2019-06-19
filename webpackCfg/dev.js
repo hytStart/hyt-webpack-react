@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+// const HtmlWebpackPlugin = require('html-webpack-plugin') // dev环境使用HtmlWebpackPlugin， 不用index.html
 // const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 
@@ -44,7 +45,45 @@ module.exports = {
                     {
                         loader: MiniCSSExtractPlugin.loader,
                     },
-                    'css-loader'],
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            localIdentName: '[name]__[local]___[hash:base64:5]',
+                            importLoaders: 1,
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    'css-hot-loader',
+                    {
+                        loader: MiniCSSExtractPlugin.loader,
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            localIdentName: '[name]__[local]___[hash:base64:5]',
+                            importLoaders: 1,
+                        },
+                    },
+                    {
+                        loader: 'less-loader',
+                    }
+                ],
+                include: [path.join(__dirname, '../src')],
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'less-loader',
+                ],
+                include: [path.join(__dirname, '../node_modules')],
             },
             {
                 test: /\.(png|jpg|gif|eot|svg|ttf|woff|woff2)$/,
@@ -78,6 +117,11 @@ module.exports = {
         ],
     },
     plugins: [
+        // new HtmlWebpackPlugin({ // dev环境使用HtmlWebpackPlugin， 不用index.html
+        //     title: 'hyt',
+        //     filename: '../index.html',
+        //     template: path.resolve(__dirname, '../src/template.html')
+        // }),
         // new ExtractTextPlugin("styles.css"),
         new MiniCSSExtractPlugin({
             filename: 'styles.css',
@@ -88,6 +132,7 @@ module.exports = {
     devtool: 'eval-source-map',
     devServer: {
         contentBase: './src/',
+        // contentBase: './dist/', // dev环境使用HtmlWebpackPlugin， 不用index.html
         publicPath,
         port,
         hot: true, // 启动热更新

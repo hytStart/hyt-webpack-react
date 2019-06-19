@@ -1,7 +1,7 @@
 const path = require('path')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 
 const defaultModule = require('./default.js')
 const {
@@ -31,10 +31,11 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ["css-loader"],
-                }),
+                use: [
+                    {
+                        loader: MiniCSSExtractPlugin.loader,
+                    },
+                    'css-loader'],
             },
             {
                 test: /\.(png|jpg|gif|eot|svg|ttf|woff|woff2)$/,
@@ -72,8 +73,11 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'hyt',
             filename: '../index.html',
+            template: path.resolve(__dirname, '../src/template.html')
         }),
-        new ExtractTextPlugin("styles.css"),
+        new MiniCSSExtractPlugin({
+            filename: 'styles.[hash].css',
+        }),
     ],
     devtool: 'cheap-module-source-map',
 }
