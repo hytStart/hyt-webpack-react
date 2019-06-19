@@ -1,6 +1,6 @@
 const defaultModule = {
     publicPath: '/assets/',
-    port: 2019,
+    port: 9900,
 }
 
 module.exports = defaultModule

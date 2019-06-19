@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 const defaultModule = require('./default.js')
@@ -16,6 +17,18 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.(js|jsx)$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['@babel/preset-env', '@babel/preset-react'],
+                        }
+                    },
+                ],
+                include: [path.join(__dirname, '../src')],
+            },
             {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
@@ -56,6 +69,8 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin("styles.css"),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ],
     devtool: 'eval-source-map',
     devServer: {
@@ -63,9 +78,9 @@ module.exports = {
         publicPath,
         port,
         hot: true, // 启动热更新
-        https: true, // 默认情况下，dev-server 通过 HTTP 提供服务。也可以选择带有 HTTPS 的 HTTP/2 提供服务
+        // https: true, // 默认情况下，dev-server 通过 HTTP 提供服务。也可以选择带有 HTTPS 的 HTTP/2 提供服务
         open: true,
-        overlay: true,
+        overlay: true, // 在屏幕网页中提示出错
         // before() {
 
         // },
