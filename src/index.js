@@ -1,4 +1,3 @@
-import './style/index.css'
 import bg from './images/scene.png'
 import dataXml from './mockdata/test.xml'
 import React from 'react'

@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+// const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 
 const defaultModule = require('./default.js')
 const {
@@ -29,12 +30,21 @@ module.exports = {
                 ],
                 include: [path.join(__dirname, '../src')],
             },
+            // {
+            //     test: /\.css$/,
+            //     use:  ['css-hot-loader'].concat(ExtractTextPlugin.extract({
+            //         fallback: "style-loader",
+            //         use: ["css-loader"],
+            //     })),
+            // },
             {
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: ["css-loader"],
-                }),
+                use: [
+                    'css-hot-loader',
+                    {
+                        loader: MiniCSSExtractPlugin.loader,
+                    },
+                    'css-loader'],
             },
             {
                 test: /\.(png|jpg|gif|eot|svg|ttf|woff|woff2)$/,
@@ -68,7 +78,10 @@ module.exports = {
         ],
     },
     plugins: [
-        new ExtractTextPlugin("styles.css"),
+        // new ExtractTextPlugin("styles.css"),
+        new MiniCSSExtractPlugin({
+            filename: 'styles.css',
+        }),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ],
