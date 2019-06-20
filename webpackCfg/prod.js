@@ -20,12 +20,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env', '@babel/preset-react'],
-                        }
-                    },
+                    'babel-loader',
                 ],
                 include: [path.join(__dirname, '../src')],
             },
@@ -35,7 +30,53 @@ module.exports = {
                     {
                         loader: MiniCSSExtractPlugin.loader,
                     },
-                    'css-loader'],
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            localIdentName: '[name]__[local]___[hash:base64:5]',
+                            importLoaders: 1,
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: MiniCSSExtractPlugin.loader,
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            localIdentName: '[name]__[local]___[hash:base64:5]',
+                            importLoaders: 2,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        // 不知道为啥不加也行
+                        options: {
+                            config: {
+                                path: path.resolve(__dirname, '../postcss.config.js'),
+                            },
+                        },
+                    },
+                    {
+                        loader: 'less-loader',
+                    }
+                ],
+                include: [path.join(__dirname, '../src')],
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'less-loader',
+                ],
+                include: [path.join(__dirname, '../node_modules')],
             },
             {
                 test: /\.(png|jpg|gif|eot|svg|ttf|woff|woff2)$/,

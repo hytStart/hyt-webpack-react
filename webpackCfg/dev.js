@@ -22,12 +22,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env', '@babel/preset-react'],
-                        }
-                    },
+                    'babel-loader',
                 ],
                 include: [path.join(__dirname, '../src')],
             },
@@ -72,11 +67,12 @@ module.exports = {
                     },
                     {
                         loader: 'postcss-loader',
-                        options: {
-                            plugins: [
-                                require('autoprefixer'),
-                            ],
-                        },
+                        // 不知道为啥不加也行
+                        // options: {
+                        //     config: {
+                        //         path: path.resolve(__dirname, '../postcss.config.js'),
+                        //     },
+                        // },
                     },
                     {
                         loader: 'less-loader',
