@@ -131,9 +131,13 @@ module.exports = {
             filename: 'styles.css',
         }),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"dev"', // 不写的话，默认 mode的 development。加了defineplugin会把之前的覆盖了。
+        }),
     ],
-    devtool: 'eval-source-map',
+    devtool: 'cheap-module-eval-source-map',
+    mode: "development", 
     devServer: {
         contentBase: './src/',
         // contentBase: './dist/', // dev环境使用HtmlWebpackPlugin， 不用index.html
