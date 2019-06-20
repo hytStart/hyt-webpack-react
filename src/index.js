@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 import bg from './images/scene.png'
 import dataXml from './mockdata/test.xml'
 import React from 'react'
