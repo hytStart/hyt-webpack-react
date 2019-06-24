@@ -13,7 +13,7 @@ const {
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: '[name].bundle.[hash].js',
+        filename: '[name].bundle.[chunkhash].js',
         // chunkFilename: '[name].bundle.js', // 应该是结合懒加载，react-lodable, React Suspense使用，但是现在有问题
         path: path.resolve(__dirname, '../dist/assets/'), // 打包的路径
         publicPath, // index.html中的引入路径
@@ -120,7 +120,7 @@ module.exports = {
             template: path.resolve(__dirname, '../src/template.html')
         }),
         new MiniCSSExtractPlugin({
-            filename: 'styles.[hash].css',
+            filename: 'styles.[contenthash].css',
         }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': '"prod"',
