@@ -275,6 +275,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.0.0"
 
+"@babel/plugin-syntax-dynamic-import@^7.2.0":
+  version "7.2.0"
+  resolved "http://172.16.116.19:7001/@babel/plugin-syntax-dynamic-import/download/@babel/plugin-syntax-dynamic-import-7.2.0.tgz#69c159ffaf4998122161ad8ebc5e6d1f55df8612"
+  integrity sha1-acFZ/69JmBIhYa2OvF5tH1XfhhI=
+  dependencies:
+    "@babel/helper-plugin-utils" "^7.0.0"
+
 "@babel/plugin-syntax-json-strings@^7.2.0":
   version "7.2.0"
   resolved "http://172.16.116.19:7001/@babel/plugin-syntax-json-strings/download/@babel/plugin-syntax-json-strings-7.2.0.tgz#72bd13f6ffe1d25938129d2a186b11fd62951470"
@@ -4247,7 +4254,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.6.2:
+prop-types@^15.5.0, prop-types@^15.6.2:
   version "15.7.2"
   resolved "http://172.16.116.19:7001/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
@@ -4413,6 +4420,13 @@ react-is@^16.8.1:
   version "16.8.6"
   resolved "http://172.16.116.19:7001/react-is/download/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha1-W7weLSkUHJ+9/tRWND/ivEMKahY=
+
+react-loadable@^5.5.0:
+  version "5.5.0"
+  resolved "http://172.16.116.19:7001/react-loadable/download/react-loadable-5.5.0.tgz#582251679d3da86c32aae2c8e689c59f1196d8c4"
+  integrity sha1-WCJRZ509qGwyquLI5onFnxGW2MQ=
+  dependencies:
+    prop-types "^15.5.0"
 
 react@^16.8.6:
   version "16.8.6"

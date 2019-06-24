@@ -3,12 +3,21 @@ import Test from './component/print'
 import style from './style/index.css'
 import styleLess from './style/index.less'
 
+
+// import Loadable from 'react-loadable'
+
+// const LoadableTest = Loadable({
+//     loader: () => import('./component/print'),
+//     loading: () => (<div>loading....</div>),
+//   });
+
 class App extends React.Component {
     render() {
         console.log(process.env.NODE_ENV)
         return (
             <div className={style['hello']}>
                 1111111
+                {/* <LoadableTest /> */}
                 <Test />
                 {
                     process.env.NODE_ENV === 'dev' ?

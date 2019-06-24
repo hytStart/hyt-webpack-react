@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const webpack = require('webpack')
 
 const defaultModule = require('./default.js')
 const {
@@ -13,6 +14,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         filename: '[name].bundle.[hash].js',
+        // chunkFilename: '[name].bundle.js', // 应该是结合懒加载，react-lodable, React Suspense使用，但是现在有问题
         path: path.resolve(__dirname, '../dist/assets/'), // 打包的路径
         publicPath, // index.html中的引入路径
     },
@@ -137,21 +139,21 @@ module.exports = {
         splitChunks: {
             cacheGroups: {
                 vendors: {
-                test: /[\\/]node_modules[\\/]/,
-                name: 'vendors',
-                minSize: 30000,
-                minChunks: 1,
-                chunks: 'initial',
-                priority: 1 // 该配置项是设置处理的优先级，数值越大越优先处理
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    minSize: 30000,
+                    minChunks: 1,
+                    chunks: 'initial',
+                    priority: 1 // 该配置项是设置处理的优先级，数值越大越优先处理
                 },
                 commons: {
-                test: /[\\/]src[\\/]common[\\/]/,
-                name: 'commons',
-                minSize: 30000,
-                minChunks: 3,
-                chunks: 'initial',
-                priority: -1,
-                reuseExistingChunk: true // 这个配置允许我们使用已经存在的代码块
+                    test: /[\\/]src[\\/]common[\\/]/,
+                    name: 'commons',
+                    minSize: 30000,
+                    minChunks: 3,
+                    chunks: 'initial',
+                    priority: -1,
+                    reuseExistingChunk: true // 这个配置允许我们使用已经存在的代码块
                 }
             }
         }
