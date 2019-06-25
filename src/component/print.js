@@ -1,10 +1,12 @@
 import React from 'react'
 
-function printMe() {
+function printMe(props) {
     console.log('I get called from print.js!');
+    console.log(props)
+
     return (
         <div>
-            22222222asfsda
+            print.js
         </div>
     )
 }

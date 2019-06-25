@@ -1,5 +1,7 @@
 import React from 'react'
-import Test from './component/print'
+import { Switch, Route, Redirect, Link } from 'react-router-dom'
+import Print from './component/print'
+import UsersPage from './component/userspage'
 import style from './style/index.css'
 import styleLess from './style/index.less'
 
@@ -12,13 +14,26 @@ import styleLess from './style/index.less'
 //   });
 
 class App extends React.Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
-        console.log(process.env.NODE_ENV)
+        // console.log(process.env.NODE_ENV)
         return (
             <div className={style['hello']}>
-                1111111
+                <header>
+                    Our React Router 4 App
+                    <Link to='/'>home</Link>
+                    <Link to='/users'>user</Link>
+                </header>
+                <main>
+                    <Switch>
+                        <Route path="/" exact component={Print} />
+                        <Route path="/users" component={UsersPage} />
+                        <Redirect to="/" />
+                    </Switch>
+                </main>
                 {/* <LoadableTest /> */}
-                <Test />
                 {
                     process.env.NODE_ENV === 'dev' ?
                         <div className={styleLess['test-less']}>44444</div> : 

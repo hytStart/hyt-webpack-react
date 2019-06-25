@@ -147,6 +147,7 @@ module.exports = {
         // https: true, // 默认情况下，dev-server 通过 HTTP 提供服务。也可以选择带有 HTTPS 的 HTTP/2 提供服务
         open: true,
         overlay: true, // 在屏幕网页中提示出错
+        historyApiFallback: true,
         // before() {
 
         // },
