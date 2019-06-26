@@ -4,7 +4,7 @@ import '@babel/polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import 'antd/dist/antd.less'
+// import 'antd/dist/antd.less'
 import App from './app'
 
 // function component() {

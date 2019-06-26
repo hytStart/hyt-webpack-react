@@ -96,7 +96,7 @@ module.exports = {
                     'css-loader',
                     {
                         loader: 'less-loader',
-                        options: { javascriptEnabled: true }
+                        // options: { javascriptEnabled: true } (// import 'antd/dist/antd.less' 的时候使用)
                     }
                 ],
                 include: [path.join(__dirname, '../node_modules')],
