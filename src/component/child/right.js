@@ -1,8 +1,11 @@
 import React from 'react'
+import { DatePicker } from 'antd'
+
+
 function Right(props) {
     return (
         <div>
-            Right component
+            <DatePicker />
         </div>
     )
 }

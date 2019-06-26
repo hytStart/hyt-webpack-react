@@ -49,6 +49,15 @@ module.exports = {
                         },
                     },
                 ],
+                include: [path.join(__dirname, '../src')],
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                ],
+                include: [path.join(__dirname, '../node_modules')],
             },
             {
                 test: /\.less$/,
@@ -85,7 +94,10 @@ module.exports = {
                 use: [
                     'style-loader',
                     'css-loader',
-                    'less-loader',
+                    {
+                        loader: 'less-loader',
+                        options: { javascriptEnabled: true }
+                    }
                 ],
                 include: [path.join(__dirname, '../node_modules')],
             },
