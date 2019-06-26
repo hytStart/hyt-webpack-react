@@ -13,6 +13,8 @@ import styleLess from './style/index.less'
 //     loading: () => (<div>loading....</div>),
 //   });
 
+export const ThemeContext = React.createContext('light')
+
 class App extends React.Component {
     constructor(props) {
         super(props)
@@ -20,26 +22,28 @@ class App extends React.Component {
     render() {
         // console.log(process.env.NODE_ENV)
         return (
-            <div className={style['hello']}>
-                <header>
-                    Our React Router 4 App
-                    <Link to='/'>home</Link>
-                    <Link to='/users'>user</Link>
-                </header>
-                <main>
-                    <Switch>
-                        <Route path="/" exact component={Print} />
-                        <Route path="/users" component={UsersPage} />
-                        <Redirect to="/" />
-                    </Switch>
-                </main>
-                {/* <LoadableTest /> */}
-                {
-                    process.env.NODE_ENV === 'dev' ?
-                        <div className={styleLess['test-less']}>44444</div> : 
-                        <div className={styleLess['test-less']}>666666666666</div>
-                }
-            </div>
+            <ThemeContext.Provider value="dark">
+                <div className={style['hello']}>
+                    <header>
+                        Our React Router 4 App
+                        <Link to='/'>home</Link>
+                        <Link to='/users'>user</Link>
+                    </header>
+                    <main>
+                        <Switch>
+                            <Route path="/" exact component={Print} />
+                            <Route path="/users" component={UsersPage} />
+                            <Redirect to="/" />
+                        </Switch>
+                    </main>
+                    {/* <LoadableTest /> */}
+                    {
+                        process.env.NODE_ENV === 'dev' ?
+                            <div className={styleLess['test-less']}>44444</div> : 
+                            <div className={styleLess['test-less']}>666666666666</div>
+                    }
+                </div>
+            </ThemeContext.Provider>
         )
     }
 }

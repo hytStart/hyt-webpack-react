@@ -18,9 +18,10 @@ class UserPage extends React.Component {
                 -------------------------------------
                 <br/>
                 <Switch>
+                    {/* <Route path="/users" exact render={() => <Redirect to='/users/left' push />} /> */}
                     <Route path="/users/left" exact component={Left} />
                     <Route path="/users/right" component={Right} />
-                    {/* <Redirect to="/" /> */}
+                    <Redirect to="/users/left" />
                 </Switch>
             </div>
         )
