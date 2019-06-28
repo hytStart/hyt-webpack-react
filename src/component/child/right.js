@@ -1,12 +1,17 @@
 import React from 'react'
 import { DatePicker } from 'antd'
+import ErrorBoundary from '../../common/ErrorBoundary'
+import Test from './child'
 
 
 function Right(props) {
     return (
-        <div>
+        <ErrorBoundary>
             <DatePicker />
-        </div>
+            <Test>
+                <div>huangyiting</div>
+            </Test>
+        </ErrorBoundary>
     )
 }
 

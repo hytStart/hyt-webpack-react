@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, Link } from 'react-router-dom'
 import Print from './component/print'
 import UsersPage from './component/userspage'
 import style from './style/index.css'
+import bg from './images/scene.png'
 import styleLess from './style/index.less'
 
 
@@ -30,6 +31,7 @@ class App extends React.Component {
                         <Link to='/users'>user</Link>
                     </header>
                     <main>
+                        <img src={bg} alt=""/>
                         <Switch>
                             <Route path="/" exact component={Print} />
                             <Route path="/users" component={UsersPage} />
